@@ -1,17 +1,36 @@
 <head>
-  <title>Leaderboard</title>
+  <title>Roster</title>
 </head>
 <body>
-  <h1>Leaderboard</h1>
+  <h1>Roster</h1>
 
-  {{> leaderboard}}
+  {{> roster}}
 
 </body>
 
-<template name="leaderboard">
+<template name="roster">
   <ul>
-    {{#each player}}
-      <li class="player">{{name}}: {{score}}</li>
+    {{> addEmployeeForm}}
+
+    {{#each employee}}
+    <li class="employee {{selectedClass}}">{{name}}, {{age}}: {{score}}</li>
     {{/each}}
+
+    {{#if selectedEmployee}}
+    <li>Selected Guy: {{selectedEmployee.name}}</li>
+    <li>
+      <button class="increment">Give 5 Points</button>
+      <button class="decrement">Take 5 Points</button>
+    </li>
+    <li><button class="remove">Remove Fine Guy</button></li>
+    {{/if}}
   </ul>
+</template>
+
+<template name="addEmployeeForm">
+  <form>
+    <input type="text" name="employeeName" placeholder="Name">
+    <input type="number" name="employeeAge" placeholder="Age">
+    <input type="submit" value="Add Employee">
+  </form>
 </template>
