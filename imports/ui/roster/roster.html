@@ -1,0 +1,54 @@
+<head>
+  <title>Roster</title>
+</head>
+<body>
+  <h1>Roster</h1>
+  <p>{{> loginButtons}}</p>
+  {{> roster}}
+
+</body>
+
+<template name="roster">
+  {{#if currentUser}}
+  {{> addEmployeeForm}}
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>Last name</th>
+      <th>Department</th>
+      <th>Title</th>
+      <th>Direct Supervisor</th>
+    </tr>
+    {{#each employee}}
+    <tr>
+      <td class="employee {{selectedClass}}">{{firstName}}</td>
+      <td class="employee {{selectedClass}}">{{lastName}}</td>
+      <td class="employee {{selectedClass}}">{{department}}</td>
+      <td class="employee {{selectedClass}}">{{title}}</td>
+      <td class="employee {{selectedClass}}">{{directSupervisor}}</td>
+    </tr>
+    {{/each}}
+  </table>
+  <br>
+  <br>
+  <br>
+  {{#if selectedEmployee}}
+  Selected Employee: {{selectedEmployee.name}}
+  <br>
+  <button class="edit">Edit</button>
+  {{/if}}
+  {{else}}
+  <p>You must be logged in to see this content.</p>
+  {{/if}}
+</template>
+
+<template name="addEmployeeForm">
+  <form>
+    <input type="text" name="employeeFirstName" placeholder="First Name">
+    <input type="text" name="employeeLastName" placeholder="Last Name">
+    <input type="text" name="employeeDepartment" placeholder="Department">
+    <input type="text" name="employeeTitle" placeholder="Title">
+    <input type="text" name="employeeDirectSupervisor" placeholder="Direct Supervisor">
+    <input type="submit" value="Add Employee">
+  </form>
+</template>

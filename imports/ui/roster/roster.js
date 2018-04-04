@@ -24,15 +24,6 @@ if(Meteor.isClient){
       var employeeId = this._id;
       Session.set('selectedEmployee', employeeId);
     },
-    //add 5 points button functionality
-    'click .increment': function(){
-      var selectedEmployee = Session.get('selectedEmployee');
-      EmployeesList.update({ _id: selectedEmployee }, { $inc: {score: 5}});
-    },
-    'click .decrement': function(){
-      var selectedEmployee = Session.get('selectedEmployee');
-      EmployeesList.update({ _id: selectedEmployee }, { $inc: {score: -5}});
-    },
     'click .remove': function(){
       var selectedEmployee = Session.get('selectedEmployee');
       EmployeesList.remove({ _id: selectedEmployee });
@@ -42,18 +33,36 @@ if(Meteor.isClient){
 Template.addEmployeeForm.events({
   'submit form': function(){
     event.preventDefault();
-    var employeeNameVar = event.target.employeeName.value;
-    var employeeAgeVar = event.target.employeeAge.value;
-    console.log(employeeNameVar);
-    console.log(employeeAgeVar);
 
+    //check if empty ADD THIS IN. SIMPLE IF EMPTY THEN ERROR
+
+    //define fields
+    var employeeFirstNameVar = event.target.employeeFirstName.value;
+    var employeeLastNameVar = event.target.employeeLastName.value;
+    var employeeDepartmentVar = event.target.employeeDepartment.value;
+    var employeeTitleVar = event.target.employeeTitle.value;
+    var employeeDirectSupervisorVar = event.target.employeeDirectSupervisor.value;
+    console.log(employeeFirstNameVar);
+    console.log(employeeLastNameVar);
+    console.log(employeeDepartmentVar);
+    console.log(employeeTitleVar);
+    console.log(employeeDirectSupervisorVar);
+
+    //insert to mongodb
     EmployeesList.insert({
-      name: employeeNameVar,
-      age: employeeAgeVar,
-      score: 0
+      firstName: employeeFirstNameVar,
+      lastName: employeeLastNameVar,
+      department: employeeDepartmentVar,
+      title: employeeTitleVar,
+      directSupervisor: employeeDirectSupervisorVar,
     });
-    event.target.employeeName.value = "";
-    event.target.employeeAge.value = "";
+
+    //clear form
+    event.target.employeeFirstName.value = "";
+    event.target.employeeLastName.value = "";
+    event.target.employeeDepartment.value = "";
+    event.target.employeeTitle.value = "";
+    event.target.employeeDirectSupervisor.value = "";
   }
 });
 
