@@ -1,0 +1,13 @@
+<body>
+<p>{{> loginButtons}}</p>
+</body>
+
+<template name="main">
+  {{#if currentUser}}
+  <button id="homeButton" onclick="">Home</button>
+  <button id="rosterButton" onclick="">Roster</button>
+  <button id="metricsButton" onclick="">Metrics</button>
+  {{else}}
+  <p>You must be logged in to see this content.</p>
+  {{/if}}
+</template>

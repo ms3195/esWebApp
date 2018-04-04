@@ -1,5 +1,12 @@
 import { Meteor } from 'meteor/meteor'
 
+import '../imports/ui/home/home.html';
+import '../imports/ui/home/home.js';
+import '../imports/ui/roster/roster.html';
+import '../imports/ui/roster/roster.js';
+import '../imports/ui/metrics/metrics.html';
+import '../imports/ui/metrics/metrics.js';
+
 if(Meteor.isClient){
   console.log("is client");
 
@@ -10,11 +17,4 @@ if(Meteor.isClient){
   //   },
   //
   // });
-
 }
-
-Template.main.events({
-  'click #rosterButton': function () {
-    Router.go('/test');
-  }
-});

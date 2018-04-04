@@ -1,3 +1,7 @@
+import { Template } from 'meteor/templating';
+
+import './roster.html';
+
 if(Meteor.isClient){
   // this code only runs on the client
   Template.roster.helpers({
@@ -30,41 +34,42 @@ if(Meteor.isClient){
     }
   });
 
-Template.addEmployeeForm.events({
-  'submit form': function(){
-    event.preventDefault();
+  Template.addEmployeeForm.events({
+    'submit form': function(){
+      event.preventDefault();
 
-    //check if empty ADD THIS IN. SIMPLE IF EMPTY THEN ERROR
+      //check if empty ADD THIS IN. SIMPLE IF EMPTY THEN ERROR
 
-    //define fields
-    var employeeFirstNameVar = event.target.employeeFirstName.value;
-    var employeeLastNameVar = event.target.employeeLastName.value;
-    var employeeDepartmentVar = event.target.employeeDepartment.value;
-    var employeeTitleVar = event.target.employeeTitle.value;
-    var employeeDirectSupervisorVar = event.target.employeeDirectSupervisor.value;
-    console.log(employeeFirstNameVar);
-    console.log(employeeLastNameVar);
-    console.log(employeeDepartmentVar);
-    console.log(employeeTitleVar);
-    console.log(employeeDirectSupervisorVar);
+      //define fields
+      var employeeFirstNameVar = event.target.employeeFirstName.value;
+      var employeeLastNameVar = event.target.employeeLastName.value;
+      var employeeDepartmentVar = event.target.employeeDepartment.value;
+      var employeeTitleVar = event.target.employeeTitle.value;
+      var employeeDirectSupervisorVar = event.target.employeeDirectSupervisor.value;
+      console.log(employeeFirstNameVar);
+      console.log(employeeLastNameVar);
+      console.log(employeeDepartmentVar);
+      console.log(employeeTitleVar);
+      console.log(employeeDirectSupervisorVar);
 
-    //insert to mongodb
-    EmployeesList.insert({
-      firstName: employeeFirstNameVar,
-      lastName: employeeLastNameVar,
-      department: employeeDepartmentVar,
-      title: employeeTitleVar,
-      directSupervisor: employeeDirectSupervisorVar,
-    });
+      //insert to mongodb
+      EmployeesList.insert({
+        firstName: employeeFirstNameVar,
+        lastName: employeeLastNameVar,
+        department: employeeDepartmentVar,
+        title: employeeTitleVar,
+        directSupervisor: employeeDirectSupervisorVar,
+      });
 
-    //clear form
-    event.target.employeeFirstName.value = "";
-    event.target.employeeLastName.value = "";
-    event.target.employeeDepartment.value = "";
-    event.target.employeeTitle.value = "";
-    event.target.employeeDirectSupervisor.value = "";
-  }
-});
+      //clear form
+      event.target.employeeFirstName.value = "";
+      event.target.employeeLastName.value = "";
+      event.target.employeeDepartment.value = "";
+      event.target.employeeTitle.value = "";
+      event.target.employeeDirectSupervisor.value = "";
+    }
+  });
+
 
 }
 

@@ -1,15 +1,10 @@
-<head>
-  <title>Roster</title>
-</head>
-<body>
-  <h1>Roster</h1>
-  <p>{{> loginButtons}}</p>
-  {{> roster}}
-
-</body>
-
 <template name="roster">
   {{#if currentUser}}
+  {{> main}}
+  <body>
+    <h1>Roster</h1>
+  </body>
+
   {{> addEmployeeForm}}
   <table>
     <tr>
