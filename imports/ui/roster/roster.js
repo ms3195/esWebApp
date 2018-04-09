@@ -1,13 +1,16 @@
 import { Template } from 'meteor/templating';
 
 import './roster.html';
+// import '../server/main.js';
+
 
 if(Meteor.isClient){
+  Meteor.subscribe('employees');
   // this code only runs on the client
   Template.roster.helpers({
     //helper functions go here
     'employee': function(){
-      return EmployeesList.find({}, {sort: {score: -1, name: 1} });
+      return EmployeesList.find({}, {sort: {firstName: 1} });
     },
     'selectedClass': function(){
       var employeeId = this._id;
@@ -38,7 +41,7 @@ if(Meteor.isClient){
     'submit form': function(){
       event.preventDefault();
 
-      //check if empty ADD THIS IN. SIMPLE IF EMPTY THEN ERROR
+      //check if empty feature. ADD THIS IN. JUST A SIMPLE IF EMPTY > THEN ERROR
 
       //define fields
       var employeeFirstNameVar = event.target.employeeFirstName.value;
@@ -60,7 +63,6 @@ if(Meteor.isClient){
         title: employeeTitleVar,
         directSupervisor: employeeDirectSupervisorVar,
       });
-
       //clear form
       event.target.employeeFirstName.value = "";
       event.target.employeeLastName.value = "";
@@ -71,10 +73,8 @@ if(Meteor.isClient){
   });
 
 
-}
+} //end isClient
 
 if (Meteor.isServer){
   // CODE RUNS ON SERVER only
 }
-
-EmployeesList = new Mongo.Collection('employees');
