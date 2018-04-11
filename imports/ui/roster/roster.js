@@ -10,7 +10,7 @@ if(Meteor.isClient){
   Template.roster.helpers({
     //helper functions go here
     'employee': function(){
-      return EmployeesList.find({}, {sort: {firstName: 1} });
+      return EmployeesList.find({}, {sort: {lastName: 1} });
     },
     'selectedClass': function(){
       var employeeId = this._id;
@@ -41,36 +41,49 @@ if(Meteor.isClient){
     'submit form': function(){
       event.preventDefault();
 
-      //check if empty feature. ADD THIS IN. JUST A SIMPLE IF EMPTY > THEN ERROR
-
       //define fields
       var employeeFirstNameVar = event.target.employeeFirstName.value;
       var employeeLastNameVar = event.target.employeeLastName.value;
       var employeeDepartmentVar = event.target.employeeDepartment.value;
       var employeeTitleVar = event.target.employeeTitle.value;
       var employeeDirectSupervisorVar = event.target.employeeDirectSupervisor.value;
-      console.log(employeeFirstNameVar);
-      console.log(employeeLastNameVar);
-      console.log(employeeDepartmentVar);
-      console.log(employeeTitleVar);
-      console.log(employeeDirectSupervisorVar);
 
-      //insert to mongodb
-      EmployeesList.insert({
-        firstName: employeeFirstNameVar,
-        lastName: employeeLastNameVar,
-        department: employeeDepartmentVar,
-        title: employeeTitleVar,
-        directSupervisor: employeeDirectSupervisorVar,
-      });
-      //clear form
-      event.target.employeeFirstName.value = "";
-      event.target.employeeLastName.value = "";
-      event.target.employeeDepartment.value = "";
-      event.target.employeeTitle.value = "";
-      event.target.employeeDirectSupervisor.value = "";
-    }
-  });
+      //check if empty feature. ADD THIS IN. JUST A SIMPLE IF EMPTY > THEN ERROR
+      if (employeeFirstNameVar == ""){
+        alert("First Name is blank.");
+      } else if (employeeLastNameVar == ""){
+        alert("Last Name is blank.");
+      } else if (employeeDepartmentVar == ""){
+        alert("Department is blank.");
+      } else if (employeeTitleVar == ""){
+        alert("Title is blank.");
+      } else if (employeeDirectSupervisorVar == ""){
+        alert("Direct Supervisor is blank.");
+      } else {
+
+        //insert to mongodb
+        console.log("IS FILLED, PUSHING BELOW TO DB");
+        console.log("firstName: " + employeeFirstNameVar);
+        console.log("lastName: " + employeeLastNameVar);
+        console.log("department: " + employeeDepartmentVar);
+        console.log("title: " + employeeTitleVar);
+        console.log("directSupervisor: " + employeeDirectSupervisorVar);
+        EmployeesList.insert({
+          firstName: employeeFirstNameVar,
+          lastName: employeeLastNameVar,
+          department: employeeDepartmentVar,
+          title: employeeTitleVar,
+          directSupervisor: employeeDirectSupervisorVar,
+        });
+        //clear form
+        event.target.employeeFirstName.value = "";
+        event.target.employeeLastName.value = "";
+        event.target.employeeDepartment.value = "";
+        event.target.employeeTitle.value = "";
+        event.target.employeeDirectSupervisor.value = "";
+      } //end else
+    }//end submit form
+  });//end addEmployeeForm.events
 
 
 } //end isClient
