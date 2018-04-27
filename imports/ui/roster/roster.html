@@ -30,8 +30,10 @@
   {{#if selectedEmployee}}
   Selected Employee: {{selectedEmployee.firstName}} {{selectedEmployee.lastName}}
   <br>
-  <button class="edit">Edit</button>
+
+  <button id="editEmployeeButton" onclick="">Edit Employee</button>
   {{/if}}
+
   {{else}}
   <p>You must be logged in to see this content.</p>
   {{/if}}

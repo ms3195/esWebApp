@@ -26,6 +26,10 @@ if(Meteor.isClient){
   });
 
   Template.roster.events({
+    'click #editEmployeeButton': function () {
+      Router.go('/edit');
+      console.log("navigating to edit page");
+    },
     //part of highlight selected employee, rest is in css
     'click .employee': function(){
       var employeeId = this._id;
