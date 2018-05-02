@@ -22,3 +22,5 @@ session@1.1.7
 accounts-password@1.5.0
 accounts-ui@1.3.0
 iron:router
+kadira:flow-router
+arillo:flow-router-helpers

@@ -13,9 +13,9 @@ if(Meteor.isClient){
       return EmployeesList.find({}, {sort: {lastName: 1} });
     },
     'selectedClass': function(){
-      var employeeId = this._id;
+      var meteorId = this._id;
       var selectedEmployee = Session.get('selectedEmployee');
-      if (employeeId == selectedEmployee){
+      if (meteorId == selectedEmployee){
         return "selected";
       }
     },
@@ -27,18 +27,28 @@ if(Meteor.isClient){
 
   Template.roster.events({
     'click #editEmployeeButton': function () {
-      Router.go('/edit');
-      console.log("navigating to edit page");
+      //get the url CHANGE TO EMPLOYEEID EVENTUALLY
+      var meteorId = Session.get('selectedEmployee');
+      console.log("meteor ID: "+meteorId)
+      var employeeId = Session.get('employeeId');
+      console.log("employee ID: "+employeeId)
+
+      //redirect to view group
+      FlowRouter.go("/edit/"+employeeId);
     },
     //part of highlight selected employee, rest is in css
     'click .employee': function(){
-      var employeeId = this._id;
-      Session.set('selectedEmployee', employeeId);
+      var meteorId = this._id;
+      Session.set('selectedEmployee', meteorId);
+      var employeeId = this.employeeId;
+      Session.set('employeeId', employeeId);
+
     },
-    'click .remove': function(){
-      var selectedEmployee = Session.get('selectedEmployee');
-      EmployeesList.remove({ _id: selectedEmployee });
-    }
+    // MOVE TO EDIT PAGE
+    // 'click .remove': function(){
+    //   var selectedEmployee = Session.get('selectedEmployee');
+    //   EmployeesList.remove({ _id: selectedEmployee });
+    // }
   });
 
   Template.addEmployeeForm.events({
@@ -46,6 +56,7 @@ if(Meteor.isClient){
       event.preventDefault();
 
       //define fields
+      var employeeIdVar = event.target.employeeId.value;
       var employeeFirstNameVar = event.target.employeeFirstName.value;
       var employeeLastNameVar = event.target.employeeLastName.value;
       var employeeDepartmentVar = event.target.employeeDepartment.value;
@@ -55,6 +66,8 @@ if(Meteor.isClient){
       //check if empty feature. ADD THIS IN. JUST A SIMPLE IF EMPTY > THEN ERROR
       if (employeeFirstNameVar == ""){
         alert("First Name is blank.");
+      } else if (employeeIdVar == ""){
+        alert("ID is blank.");
       } else if (employeeLastNameVar == ""){
         alert("Last Name is blank.");
       } else if (employeeDepartmentVar == ""){
@@ -67,12 +80,14 @@ if(Meteor.isClient){
 
         //insert to mongodb
         console.log("IS FILLED, PUSHING BELOW TO DB");
+        console.log("Employee ID: " + employeeIdVar);
         console.log("firstName: " + employeeFirstNameVar);
         console.log("lastName: " + employeeLastNameVar);
         console.log("department: " + employeeDepartmentVar);
         console.log("title: " + employeeTitleVar);
         console.log("directSupervisor: " + employeeDirectSupervisorVar);
         EmployeesList.insert({
+          employeeId: employeeIdVar,
           firstName: employeeFirstNameVar,
           lastName: employeeLastNameVar,
           department: employeeDepartmentVar,
@@ -80,6 +95,7 @@ if(Meteor.isClient){
           directSupervisor: employeeDirectSupervisorVar,
         });
         //clear form
+        event.target.employeeId.value = "";
         event.target.employeeFirstName.value = "";
         event.target.employeeLastName.value = "";
         event.target.employeeDepartment.value = "";

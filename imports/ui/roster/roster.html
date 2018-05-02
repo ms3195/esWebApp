@@ -8,6 +8,7 @@
   {{> addEmployeeForm}}
   <table>
     <tr>
+      <th>Employee ID</th>
       <th>First Name</th>
       <th>Last name</th>
       <th>Department</th>
@@ -16,6 +17,7 @@
     </tr>
     {{#each employee}}
     <tr>
+      <td class="employee {{selectedClass}}">{{employeeId}}</td>
       <td class="employee {{selectedClass}}">{{firstName}}</td>
       <td class="employee {{selectedClass}}">{{lastName}}</td>
       <td class="employee {{selectedClass}}">{{department}}</td>
@@ -41,6 +43,7 @@
 
 <template name="addEmployeeForm">
   <form>
+    <input type="text" name="employeeId" placeholder="Employee ID">
     <input type="text" name="employeeFirstName" placeholder="First Name">
     <input type="text" name="employeeLastName" placeholder="Last Name">
     <input type="text" name="employeeDepartment" placeholder="Department">
