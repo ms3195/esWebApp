@@ -2,10 +2,12 @@
   {{#if currentUser}}
   {{ >main}}
   <body>
-    <h1>Edit Employee</h1>
+    <h1>Edit Employee (change this to employee name)</h1> 
   </body>
-  Selected Employee: {{selectedEmployee.firstName}} {{selectedEmployee.lastName}}
 
-    <button id="deleteEmployee" onclick="">Delete Employee</button>
+  Selected Employee: {{FlowRouter.getParam(employeUrl)}}
+
+  <br>
+  <button id="deleteEmployee" onclick="">Delete Employee</button>
   {{/if}}
 </template>
