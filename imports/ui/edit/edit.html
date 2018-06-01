@@ -2,12 +2,39 @@
   {{#if currentUser}}
   {{ >main}}
   <body>
-    <h1>Edit Employee (change this to employee name)</h1> 
+    <h1>Edit Employee</h1>
   </body>
+<br>
 
-  Selected Employee: {{FlowRouter.getParam(employeUrl)}}
-
+  <table id="employeeInfo">
+            <tr align="left">
+                <th>Employee ID:</th>
+                <td>{{selectedId.employeeId}}</td>
+            </tr>
+            <tr align="left">
+                <th>First Name:</th>
+                <td>{{selectedId.firstName}}</td>
+            </tr>
+            <tr align="left">
+                <th>Last Name:</th>
+                <td>{{selectedId.lastName}}</td>
+            </tr>
+            <tr align="left">
+                <th>Department:</th>
+                <td>{{selectedId.department}}</td>
+            </tr>
+            <tr align="left">
+                <th>Title:</th>
+                <td>{{selectedId.title}}</td>
+            </tr>
+            <tr align="left">
+                <th>Direct Supervisor:</th>
+                <td>{{selectedId.directSupervisor}}</td>
+            </tr>
+        </table>
   <br>
-  <button id="deleteEmployee" onclick="">Delete Employee</button>
+  <br>
+  <br>
+  <button id="deleteEmployeeButton" onclick="">Delete Employee</button>
   {{/if}}
 </template>
