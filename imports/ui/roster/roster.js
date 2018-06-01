@@ -42,13 +42,7 @@ if(Meteor.isClient){
       Session.set('selectedEmployee', meteorId);
       var employeeId = this.employeeId;
       Session.set('employeeId', employeeId);
-
     },
-    // MOVE TO EDIT PAGE
-    // 'click .remove': function(){
-    //   var selectedEmployee = Session.get('selectedEmployee');
-    //   EmployeesList.remove({ _id: selectedEmployee });
-    // }
   });
 
   Template.addEmployeeForm.events({
