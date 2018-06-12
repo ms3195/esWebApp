@@ -22,7 +22,9 @@
       <td class="employee {{selectedClass}}">{{lastName}}</td>
       <td class="employee {{selectedClass}}">{{department}}</td>
       <td class="employee {{selectedClass}}">{{title}}</td>
-      <td class="employee {{selectedClass}}">{{directSupervisor}}</td>
+      <td class="employee {{selectedClass}}">
+        <button id="supervisorButton">{{directSupervisor}}</button>
+      </td>
     </tr>
     {{/each}}
   </table>

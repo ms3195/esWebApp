@@ -12,6 +12,7 @@ if(Meteor.isClient){
     'employee': function(){
       return EmployeesList.find({}, {sort: {lastName: 1} });
     },
+
     'selectedClass': function(){
       var meteorId = this._id;
       var selectedEmployee = Session.get('selectedEmployee');
@@ -19,10 +20,12 @@ if(Meteor.isClient){
         return "selected";
       }
     },
+
     'selectedEmployee': function(){
       var selectedEmployee = Session.get('selectedEmployee');
       return EmployeesList.findOne({ _id: selectedEmployee });
     },
+
   });
 
   Template.roster.events({
@@ -33,7 +36,7 @@ if(Meteor.isClient){
       var employeeId = Session.get('employeeId');
       console.log("employee ID: "+employeeId)
 
-      //redirect to view group
+      //redirect to view profile
       FlowRouter.go("/edit/"+employeeId);
     },
     //part of highlight selected employee, rest is in css
@@ -58,10 +61,10 @@ if(Meteor.isClient){
       var employeeDirectSupervisorVar = event.target.employeeDirectSupervisor.value;
 
       //check if empty feature. ADD THIS IN. JUST A SIMPLE IF EMPTY > THEN ERROR
-      if (employeeFirstNameVar == ""){
+      if (employeeIdVar == ""){
+      alert("ID is blank.");
+      } else if (employeeFirstNameVar == ""){
         alert("First Name is blank.");
-      } else if (employeeIdVar == ""){
-        alert("ID is blank.");
       } else if (employeeLastNameVar == ""){
         alert("Last Name is blank.");
       } else if (employeeDepartmentVar == ""){

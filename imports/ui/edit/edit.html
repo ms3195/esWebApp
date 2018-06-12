@@ -9,32 +9,41 @@
   <table id="employeeInfo">
             <tr align="left">
                 <th>Employee ID:</th>
-                <td>{{selectedId.employeeId}}</td>
+                <input type="text" name="employeeId" placeholder="{{selectedId.employeeId}}">
             </tr>
             <tr align="left">
                 <th>First Name:</th>
-                <td>{{selectedId.firstName}}</td>
+                <input type="text" name="employeeFirstName" placeholder="{{selectedId.firstName}}">
             </tr>
             <tr align="left">
                 <th>Last Name:</th>
-                <td>{{selectedId.lastName}}</td>
+                <input type="text" name="employeeLastName" placeholder="{{selectedId.lastName}}">
             </tr>
             <tr align="left">
                 <th>Department:</th>
-                <td>{{selectedId.department}}</td>
+                <input type="text" name="employeeDepartment" placeholder="{{selectedId.department}}">
             </tr>
             <tr align="left">
                 <th>Title:</th>
-                <td>{{selectedId.title}}</td>
+                <input type="text" name="employeeTitle" placeholder="{{selectedId.title}}">
+            </tr>
+            <tr align="left">
+                <th>Job ID:</th>
+                <input type="text" name="employeeJobId" placeholder="{{selectedId.jobId}}">
             </tr>
             <tr align="left">
                 <th>Direct Supervisor:</th>
-                <td>{{selectedId.directSupervisor}}</td>
+                <td>
+                  <button id="supervisor">{{selectedId.directSupervisor}}</button>
+                </td>
             </tr>
         </table>
   <br>
+  <button id="deleteEmployeeButton">Delete Employee</button>
   <br>
   <br>
-  <button id="deleteEmployeeButton" onclick="">Delete Employee</button>
+  <br>
+  <button id="saveChangesButton">Save Changes</button>
+
   {{/if}}
 </template>

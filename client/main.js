@@ -11,12 +11,4 @@ import '../imports/ui/edit/edit.js';
 
 if(Meteor.isClient){
   console.log("is client");
-
-  // Template.main.events({
-  //   'click .rosterButton': function(){
-  //     console.log("switching to roster page");
-  //     //add code to switch to a roster page
-  //   },
-  //
-  // });
 }
