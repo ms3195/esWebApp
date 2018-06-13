@@ -13,58 +13,71 @@ if(Meteor.isClient){
 
   Template.editEmployee.helpers({
     //helper functions go here
-    'selectedId': function(){
-      var selectedId = FlowRouter.current().params.employeeUrl;
-      return EmployeesList.findOne({ employeeId: selectedId });
+    'selectedEmplId': function(){
+      var selectedEmplId = FlowRouter.current().params.employeeUrl;
+      return EmployeesList.findOne({ employeeId: selectedEmplId });
     },
 
+    'selectedSupervisorId': function(){
+      var selectedEmplId = FlowRouter.current().params.employeeUrl;
+      var selectedSupervisorId = EmployeesList.findOne({ employeeId: selectedEmplId }).directSupervisor;
+      return EmployeesList.findOne({ employeeId: selectedSupervisorId });
+    },
+
+    /*
     'selectedEmployee': function(){
-      var selectedEmployee = Session.get('selectedEmployee');
-      return EmployeesList.findOne({ _id: selectedEmployee });
-    },
+    var selectedId = FlowRouter.current().params.employeeUrl;
+    var selectedEmployee = EmployeesList.findOne({ employeeId: selectedId });
+    return EmployeesList.findOne({ _id: selectedEmployee });
+  },
+  */
+
+}); //end editEmployee helpers
 
 
-  });
+Template.editEmployee.events({
+  'click #deleteEmployeeButton': function () {
+    //Delete Confirmation
+    if (confirm("Are you sure you want to delete this employee?")){
+      if (confirm("Are you really sure?")){
+        var selectedId = FlowRouter.current().params.employeeUrl;
+        //    var selectedEmployee = EmployeesList.findOne({ employeeId: selectedId });
+        //console.log(selectedEmployee)
+        var meteorId = EmployeesList.findOne({ employeeId: selectedId })._id;
+        //console.log("meteor ID:"+meteorId)
 
-  Template.editEmployee.events({
-    // MOVE TO EDIT PAGE
-    // 'click .remove': function(){
-    //   var selectedEmployee = Session.get('selectedEmployee');
-    //   EmployeesList.remove({ _id: selectedEmployee });
-    // }
+        //delete employee
+        console.log("Deleting Employee #:"+selectedId)
+        EmployeesList.remove({ _id: meteorId });
 
-    'click #deleteEmployeeButton': function () {
-      //Delete Confirmation
-      if (confirm("Are you sure you want to delete this employee?")){
-        if (confirm("Are you really sure?")){
-          var selectedId = FlowRouter.current().params.employeeUrl;
-          var selectedEmployee = EmployeesList.findOne({ employeeId: selectedId });
-          //console.log(selectedEmployee)
-          var meteorId = Session.get('selectedEmployee');
-          //console.log("meteor ID:"+meteorId)
+        //redirect to roster
+        FlowRouter.go("/roster");
 
-          EmployeesList.remove({ _id: meteorId });
-
-          //INSERT CONFIRM DELETE BOX here
-          console.log("Deleting Employee #:"+selectedId)
-          //DELETE EMPLOYEE HERE
-
-          //redirect to roster
-          FlowRouter.go("/roster");
-
-        }
       }
-    }, //end deleteEmployeeButton
+    }
+  }, //end deleteEmployeeButton
 
-    'click #saveChangesButton': function () {
-      if (confirm("Are you sure you want to save changes?")){
-        //insert code here to commit changes
-        console.log("Commiting changes")
-      }
-    }, //end saveChangesButton
+  'click #saveChangesButton': function () {
+    if (confirm("Are you sure you want to save changes?")){
+      //insert code here to commit changes
+      console.log("Commiting changes")
+    }
+  }, //end saveChangesButton
 
+  'click #supervisorButton': function () {
+    var selectedId = FlowRouter.current().params.employeeUrl;
+    var meteorId = EmployeesList.findOne({ employeeId: selectedId })._id;
+    console.log("Employee MeteorID: "+meteorId)
 
-  }); //End editEmployee.events
+    var employeeDirectSupervisorID = EmployeesList.findOne({ employeeId: selectedId }).directSupervisor;
+    console.log(employeeDirectSupervisorID)
+    console.log("Switching to supervisor.")
+
+    FlowRouter.go("/edit/"+employeeDirectSupervisorID);
+
+  }, //end saveChangesButton
+
+}); //End editEmployee.events
 
 
 

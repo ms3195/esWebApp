@@ -39,6 +39,7 @@ if(Meteor.isClient){
       //redirect to view profile
       FlowRouter.go("/edit/"+employeeId);
     },
+
     //part of highlight selected employee, rest is in css
     'click .employee': function(){
       var meteorId = this._id;

@@ -9,32 +9,28 @@
   <table id="employeeInfo">
             <tr align="left">
                 <th>Employee ID:</th>
-                <input type="text" name="employeeId" placeholder="{{selectedId.employeeId}}">
+                <input type="text" name="employeeId" placeholder="{{selectedEmplId.employeeId}}">
             </tr>
             <tr align="left">
                 <th>First Name:</th>
-                <input type="text" name="employeeFirstName" placeholder="{{selectedId.firstName}}">
+                <input type="text" name="employeeFirstName" placeholder="{{selectedEmplId.firstName}}">
             </tr>
             <tr align="left">
                 <th>Last Name:</th>
-                <input type="text" name="employeeLastName" placeholder="{{selectedId.lastName}}">
+                <input type="text" name="employeeLastName" placeholder="{{selectedEmplId.lastName}}">
             </tr>
             <tr align="left">
                 <th>Department:</th>
-                <input type="text" name="employeeDepartment" placeholder="{{selectedId.department}}">
+                <input type="text" name="employeeDepartment" placeholder="{{selectedEmplId.department}}">
             </tr>
             <tr align="left">
                 <th>Title:</th>
-                <input type="text" name="employeeTitle" placeholder="{{selectedId.title}}">
-            </tr>
-            <tr align="left">
-                <th>Job ID:</th>
-                <input type="text" name="employeeJobId" placeholder="{{selectedId.jobId}}">
+                <input type="text" name="employeeTitle" placeholder="{{selectedEmplId.title}}">
             </tr>
             <tr align="left">
                 <th>Direct Supervisor:</th>
                 <td>
-                  <button id="supervisor">{{selectedId.directSupervisor}}</button>
+                  <button id="supervisorButton">{{selectedSupervisorId.firstName}} {{selectedSupervisorId.lastName}}</button>
                 </td>
             </tr>
         </table>
