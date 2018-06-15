@@ -1,5 +1,5 @@
 <body>
-<p>{{> loginButtons}}</p>
+  <p>{{> loginButtons}}</p>
 </body>
 
 <template name="main">
@@ -7,6 +7,20 @@
   <button id="homeButton" onclick="">Home</button>
   <button id="rosterButton" onclick="">Roster</button>
   <button id="metricsButton" onclick="">Metrics</button>
+  {{else}}
+  <p>You must be logged in to see this content.</p>
+  {{/if}}
+</template>
+
+
+<template name="home">
+  {{#if currentUser}}
+  {{> main}}
+  <body>
+    <h1>Welcome!</h1>
+  </body>
+
+
   {{else}}
   <p>You must be logged in to see this content.</p>
   {{/if}}

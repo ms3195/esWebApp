@@ -1,45 +1,94 @@
 <template name="editEmployee">
   {{#if currentUser}}
   {{ >main}}
+
   <body>
     <h1>Edit Employee</h1>
   </body>
-<br>
+  <br>
 
+  {{> editEmployeeForm}}
+  <!--
+  <form>
   <table id="employeeInfo">
-            <tr align="left">
-                <th>Employee ID:</th>
-                <input type="text" name="employeeId" placeholder="{{selectedEmplId.employeeId}}">
-            </tr>
-            <tr align="left">
-                <th>First Name:</th>
-                <input type="text" name="employeeFirstName" placeholder="{{selectedEmplId.firstName}}">
-            </tr>
-            <tr align="left">
-                <th>Last Name:</th>
-                <input type="text" name="employeeLastName" placeholder="{{selectedEmplId.lastName}}">
-            </tr>
-            <tr align="left">
-                <th>Department:</th>
-                <input type="text" name="employeeDepartment" placeholder="{{selectedEmplId.department}}">
-            </tr>
-            <tr align="left">
-                <th>Title:</th>
-                <input type="text" name="employeeTitle" placeholder="{{selectedEmplId.title}}">
-            </tr>
-            <tr align="left">
-                <th>Direct Supervisor:</th>
-                <td>
-                  <button id="supervisorButton">{{selectedSupervisorId.firstName}} {{selectedSupervisorId.lastName}}</button>
-                </td>
-            </tr>
-        </table>
-  <br>
-  <button id="deleteEmployeeButton">Delete Employee</button>
-  <br>
-  <br>
-  <br>
-  <button id="saveChangesButton">Save Changes</button>
+  <tr align="left">
+  <th>Employee ID:</th>
+  <input type="text" name="employeeId" placeholder="{{selectedEmplId.employeeId}}">
+</tr>
+<tr align="left">
+<th>First Name:</th>
+<input type="text" name="employeeFirstName" placeholder="{{selectedEmplId.firstName}}">
+</tr>
+<tr align="left">
+<th>Last Name:</th>
+<input type="text" name="employeeLastName" placeholder="{{selectedEmplId.lastName}}">
+</tr>
+<tr align="left">
+<th>Department:</th>
+<input type="text" name="employeeDepartment" placeholder="{{selectedEmplId.department}}">
+</tr>
+<tr align="left">
+<th>Title:</th>
+<input type="text" name="employeeTitle" placeholder="{{selectedEmplId.title}}">
+</tr>
+<tr align="left">
+<th>Direct Supervisor:</th>
+<td>
+<input type="text" name="employeeTitle" placeholder="{{selectedSupervisorId.firstName}} {{selectedSupervisorId.lastName}}">
 
-  {{/if}}
+</td>
+</tr>
+<tr align="left">
+<input type="submit" value="Save Changes">
+</tr>
+</table>
+</form>
+
+
+<br>
+<br>
+<br>
+<br> -->
+
+{{/if}}
+</template>
+
+
+<template name="editEmployeeForm">
+  <form>
+    <table>
+      <tr align="left">
+        <th>Employee ID:</th>
+        <input type="text" name="employeeId" placeholder="{{selectedEmplId.employeeId}}">
+      </tr>
+      <tr align="left">
+        <th>First Name:</th>
+        <input type="text" name="employeeFirstName" placeholder="{{selectedEmplId.firstName}}">
+      </tr>
+      <tr align="left">
+        <th>Last Name:</th>
+        <input type="text" name="employeeLastName" placeholder="{{selectedEmplId.lastName}}">
+      </tr>
+      <tr align="left">
+        <th>Department:</th>
+        <input type="text" name="employeeDepartment" placeholder="{{selectedEmplId.department}}">
+      </tr>
+      <tr align="left">
+        <th>Title:</th>
+        <input type="text" name="employeeTitle" placeholder="{{selectedEmplId.title}}">
+      </tr>
+      <tr align="left">
+        <th>Direct Supervisor:</th>
+        <input type="text" name="employeeDirectSupervisor" placeholder="{{selectedSupervisorId.firstName}} {{selectedSupervisorId.lastName}}">
+        <button id="supervisorButton">Go</button>
+      </tr>
+    </table>
+    <br>
+    <input type="submit" value="Save Changes">
+    <br>
+    <br>
+    <br>
+    <button id="deleteEmployeeButton">Delete Employee</button>
+
+  </form>
 </template>

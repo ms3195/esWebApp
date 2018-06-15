@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 
 import './roster.html';
+import './roster.css';
 // import '../server/main.js';
 
 
@@ -40,7 +41,6 @@ if(Meteor.isClient){
       FlowRouter.go("/edit/"+employeeId);
     },
 
-    //part of highlight selected employee, rest is in css
     'click .employee': function(){
       var meteorId = this._id;
       Session.set('selectedEmployee', meteorId);

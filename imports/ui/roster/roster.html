@@ -16,7 +16,7 @@
       <th>Direct Supervisor</th>
     </tr>
     {{#each employee}}
-    <tr>
+    <tr id="test">
       <td class="employee {{selectedClass}}">{{employeeId}}</td>
       <td class="employee {{selectedClass}}">{{firstName}}</td>
       <td class="employee {{selectedClass}}">{{lastName}}</td>
@@ -52,7 +52,7 @@
     <input type="text" name="employeeLastName" placeholder="Last Name">
     <input type="text" name="employeeDepartment" placeholder="Department">
     <input type="text" name="employeeTitle" placeholder="Title">
-    <input type="text" name="employeeDirectSupervisor" placeholder="Direct Supervisor">
+    <input type="text" name="employeeDirectSupervisor" placeholder="Direct Supervisor ID">
     <input type="submit" value="Add Employee">
   </form>
 </template>
